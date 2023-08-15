@@ -1,0 +1,13 @@
+---
+
+- name: new cluster shell
+  template: src=new_cluster.sh.j2 dest={{ script_dir }}/new_cluster.sh
+
+- name: execute new cluster
+  shell: "sh {{ script_dir }}/new_cluster.sh"
+  
+- name: new manager shell
+  template: src=new_manager.sh.j2 dest={{ script_dir }}/new_manager.sh
+
+- name: execute new manager
+  shell: "sh {{ script_dir }}/new_manager.sh"

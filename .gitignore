@@ -1,0 +1,14 @@
+retry_files/
+downloads/
+resources/
+fact_files/
+conf/
+scripts/
+
+.vagrant/
+*.retry
+*.pyc
+*.log
+.vscode
+.DS_Store
+.idea

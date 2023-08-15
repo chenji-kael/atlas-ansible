@@ -1,0 +1,10 @@
+---
+
+- name: deploy binary
+  copy: src="{{ resources_dir }}/bin/atlas-admin" dest="{{ deploy_dir }}/bin/" mode=0755 backup=yes
+  register: node_binary
+
+- name: backup binary file
+  command: mv "{{ node_binary.backup_file }}" "{{ backup_dir }}"
+  when: node_binary.changed and node_binary.backup_file is defined
+

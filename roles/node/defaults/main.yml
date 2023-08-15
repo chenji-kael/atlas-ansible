@@ -1,0 +1,16 @@
+---
+
+node_port: 4001
+
+node_log_dir: "{{ deploy_dir }}/log"
+node_log_filename: "node.log"
+node_stderr_filename: "node_stderr.log"
+
+node_conf_dir: "{{ deploy_dir }}/conf"
+
+labels: {}
+
+
+# docker settings
+# tikv_docker_log_dir: "{{ tikv_log_dir }}/tikv"
+#

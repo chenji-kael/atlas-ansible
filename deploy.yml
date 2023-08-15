@@ -1,0 +1,24 @@
+---
+
+- name: deploying atlas manager
+  hosts: manager_servers
+  tags:
+    - manager
+  roles:
+    - manager
+#  tasks:
+#    - debug: var=hostvars[inventory_hostname]
+
+#- name: deploying atlas node
+#  hosts: node_servers
+#  tags:
+#    - node
+#  roles:
+#    - node
+
+- name: deploying atlas admin
+  hosts: manager_servers,node_servers
+  tags:
+    - admin
+  roles:
+    - admin

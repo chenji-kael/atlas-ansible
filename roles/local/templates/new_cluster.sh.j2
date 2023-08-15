@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e
+
+{{ resources_dir }}/bin/atlas-admin new-cluster \
+--output {{ conf_dir }}/atlas.toml \
+--cluster-name {{ cluster_name }} \
+--kafka-urls '{{ kafka_urls | join(",") }}' \
+--pd-urls '{{ pd_urls | join(",") }}'

@@ -1,0 +1,13 @@
+# Variables here are applicable to all host groups
+deploy_user: "{{ ansible_user }}"
+status_dir: "{{ deploy_dir }}/status"
+backup_dir: "{{ deploy_dir }}/backup"
+images_dir: "{{ deploy_dir }}/images"
+
+# Local
+downloads_dir: "{{ playbook_dir }}/downloads"
+resources_dir: "{{ playbook_dir }}/resources"
+conf_dir:      "{{ playbook_dir }}/conf"
+script_dir:    "{{ playbook_dir }}/scripts"
+binary_dir:    "{{ playbook_dir }}/resources/bin"
+

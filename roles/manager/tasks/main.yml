@@ -1,0 +1,12 @@
+---
+# tasks file for manager
+
+- name: create deploy directories
+  file: path={{ item }} state=directory mode=0755
+  with_items:
+  - "{{ manager_log_dir }}"
+  - "{{ manager_conf_dir }}"
+  - "{{ manager_data_dir }}"
+
+- include_tasks: "deployment.yml"
+

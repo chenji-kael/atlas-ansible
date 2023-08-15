@@ -1,0 +1,18 @@
+#!/bin/bash
+set -e
+
+
+{% for vhost in groups.manager_servers %}
+{% set sm_name = hostvars[vhost].sm_name -%}
+{{ binary_dir }}/atlas-admin new-manager \
+    --conf {{ conf_dir }}/atlas.toml \
+    --name {{ sm_name }} \
+    --dir sm{{ loop.index }}.db \
+    --listen-client-urls http://{{ vhost }}:12379 \
+    --advertise-client-urls http://{{ vhost }}:12379 \
+    --listen-peer-urls http://{{ vhost }}:12380  \
+    --advertise-peer-urls http://{{ vhost }}:12380 \
+    --listen-grpc {{ vhost }}:3401 \
+    --exporter-port 9131
+
+{% endfor %}

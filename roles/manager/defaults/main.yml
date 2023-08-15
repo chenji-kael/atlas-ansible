@@ -1,0 +1,16 @@
+---
+
+manager_client_port: 12379
+manager_peer_port: 12380
+
+manager_name_prefix: manager
+manager_scheme: http
+
+manager_data_dir: "{{ deploy_dir }}/data.manager"
+
+manager_log_dir: "{{ deploy_dir }}/log"
+
+manager_conf_dir: "{{ deploy_dir }}/conf"
+
+location_labels: []
+

@@ -1,0 +1,32 @@
+---
+
+- name: deploy binary
+  copy: src="{{ resources_dir }}/bin/atlas-manager" dest="{{ deploy_dir }}/bin/" mode=0755 backup=yes
+  register: manager_binary
+
+- name: backup binary file
+  command: mv "{{ manager_binary.backup_file }}" "{{ backup_dir }}"
+  when: manager_binary.changed and manager_binary.backup_file is defined
+
+- name: deploy systemd scripts
+  become: true
+  template: src="atlas-manager.service.j2" dest="/etc/systemd/system/atlas-manager.service" mode=0644
+
+- name: deploy shell scripts
+  become: true
+  template:
+    src: "run_atlas_manager.sh.j2"
+    dest: "{{ deploy_dir }}/scripts/run_atlas_manager.sh"
+    mode: "0755"
+    owner: "{{ deploy_user }}"
+    group: "{{ deploy_user }}"
+
+- name: deploy config
+  become: true
+  copy:
+    src: "{{ conf_dir }}/atlas.toml"
+    dest: "{{ deploy_dir }}/conf/atlas.toml"
+
+- name: reload systemd
+  become: true
+  shell: "systemctl daemon-reload"

@@ -1,0 +1,10 @@
+---
+# tasks file for node
+
+- name: create deploy directories
+  file: path={{ item }} state=directory mode=0755
+  with_items:
+    - "{{ node_log_dir }}"
+    - "{{ node_conf_dir }}"
+
+- include_tasks: "deployment.yml"
